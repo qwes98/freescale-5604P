@@ -56,6 +56,7 @@ Link map of __start
     3] init_INTC (func,global) found in init_base.o 
     3] init_Linflex0 (func,global) found in init_base.o 
     3] LED_Init (func,global) found in main.o 
+    3] ADC1_Init (func,global) found in main.o 
     3] FMSTR_Recorder (func,global) found in freemaster_rec.o 
      4] FMSTR_Recorder2 (func,local) found in freemaster_rec.o 
       5] pcm_wRecTimeDivCtr (object,global) found in freemaster_rec.o 
@@ -130,6 +131,8 @@ Link map of __start
      4] SW (object,global) found in main.o 
      4] SWold (object,global) found in main.o 
      4] cnt (object,global) found in main.o 
+    3] ADCRead_1 (func,global) found in main.o 
+     4] R_adc (object,global) found in main.o 
     3] i (object,global) found in main.o 
    2] exit (func,weak) found in __ppc_eabi_init.o 
     3] _ExitProcess (func,weak) found in __ppc_eabi_init.o 
@@ -233,7 +236,7 @@ Link map of __start
   1] _dtors (notype,global) found in Linker Generated Symbol File 
   1] _dtors$99 (object,global) found in Linker Generated Symbol File 
     3] .text (section,local) found in main.o 
-    3] .text.51 (notype,local) found in main.o 
+    3] .text.64 (notype,local) found in main.o 
     3] .ivor_branch_table (section,local) found in ivor_branch_table.o 
     3] .ivor_branch_table.24 (notype,local) found in ivor_branch_table.o 
     3] .text (section,local) found in MPC5604P_M26V_HWInit.o 
@@ -336,114 +339,116 @@ Link map of __start
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 0001e4 00002000 00000870  1 .text 	main.o 
-  00000000 00004e 00002000 00000870  2 main 	main.o 
-  0000004e 000052 0000204e 000008be  2 LED_Init 	main.o 
-  000000a0 00005a 000020a0 00000910  2 LED_Control 	main.o 
-  000000fa 0000ea 000020fa 0000096a  2 Switch_Control 	main.o 
-  000001e4 000000 000021e4 00000a54  1 .text.51 	main.o 
-  000001e4 000066 000021e4 00000a54  1 .text 	__ppc_eabi_init.o 
-  000001e4 00003e 000021e4 00000a54  2 FlashConfig 	__ppc_eabi_init.o 
-  00000222 000012 00002222 00000a92  2 __init_user 	__ppc_eabi_init.o 
-  00000234 000014 00002234 00000aa4  2 exit 	__ppc_eabi_init.o 
-  00000248 000002 00002248 00000ab8  2 _ExitProcess 	__ppc_eabi_init.o 
-  0000024a 00001e 0000224a 00000aba  1 .text 	MPC5604P_M26V_HWInit.o 
-  0000024a 00001e 0000224a 00000aba  2 INIT_Derivative 	MPC5604P_M26V_HWInit.o 
+  00000000 000348 00002000 00000870  1 .text 	main.o 
+  00000000 000056 00002000 00000870  2 main 	main.o 
+  00000056 000052 00002056 000008c6  2 LED_Init 	main.o 
+  000000a8 00005a 000020a8 00000918  2 LED_Control 	main.o 
+  00000102 0000ea 00002102 00000972  2 Switch_Control 	main.o 
+  000001ec 0000d4 000021ec 00000a5c  2 ADC1_Init 	main.o 
+  000002c0 000088 000022c0 00000b30  2 ADCRead_1 	main.o 
+  00000348 000000 00002348 00000bb8  1 .text.64 	main.o 
+  00000348 000066 00002348 00000bb8  1 .text 	__ppc_eabi_init.o 
+  00000348 00003e 00002348 00000bb8  2 FlashConfig 	__ppc_eabi_init.o 
+  00000386 000012 00002386 00000bf6  2 __init_user 	__ppc_eabi_init.o 
+  00000398 000014 00002398 00000c08  2 exit 	__ppc_eabi_init.o 
+  000003ac 000002 000023ac 00000c1c  2 _ExitProcess 	__ppc_eabi_init.o 
+  000003ae 00001e 000023ae 00000c1e  1 .text 	MPC5604P_M26V_HWInit.o 
+  000003ae 00001e 000023ae 00000c1e  2 INIT_Derivative 	MPC5604P_M26V_HWInit.o 
   UNUSED   000012 ........ ........    INIT_ExternalBusAndMemory MPC5604P_M26V_HWInit.o 
   UNUSED   00000c ........ ........    InitPCRs MPC5604P_M26V_HWInit.o 
   UNUSED   000064 ........ ........    __initSIUExtBusInterface MPC5604P_M26V_HWInit.o 
   UNUSED   000002 ........ ........    __initEBIChipSelects MPC5604P_M26V_HWInit.o 
   UNUSED   000016 ........ ........    WriteMMUTableEntry MPC5604P_M26V_HWInit.o 
   UNUSED   000006 ........ ........    __initMMUExternalMemory MPC5604P_M26V_HWInit.o 
-  00000268 000000 00002268 00000ad8  1 .text.34 	MPC5604P_M26V_HWInit.o 
-  00000268 000016 00002268 00000ad8  1 .text 	Exceptions.o 
-  00000268 000016 00002268 00000ad8  2 EXCEP_InitExceptionHandlers 	Exceptions.o 
-  0000027e 000030 0000227e 00000aee  1 .text 	IntcInterrupts.o 
+  000003cc 000000 000023cc 00000c3c  1 .text.34 	MPC5604P_M26V_HWInit.o 
+  000003cc 000016 000023cc 00000c3c  1 .text 	Exceptions.o 
+  000003cc 000016 000023cc 00000c3c  2 EXCEP_InitExceptionHandlers 	Exceptions.o 
+  000003e2 000030 000023e2 00000c52  1 .text 	IntcInterrupts.o 
   UNUSED   000030 ........ ........    INTC_InstallINTCInterruptHandler IntcInterrupts.o 
-  0000027e 000030 0000227e 00000aee  2 INTC_InitINTCInterrupts 	IntcInterrupts.o 
-  000002ae 000378 000022ae 00000b1e  1 .text 	init_base.o 
-  000002ae 0001ee 000022ae 00000b1e  2 initModesAndClock 	init_base.o 
-  0000049c 000032 0000249c 00000d0c  2 disableWatchdog 	init_base.o 
-  000004ce 000018 000024ce 00000d3e  2 enableIrq 	init_base.o 
-  000004e6 000042 000024e6 00000d56  2 initOutputClock 	init_base.o 
-  00000528 000038 00002528 00000d98  2 init_INTC 	init_base.o 
-  00000560 0000c6 00002560 00000dd0  2 init_Linflex0 	init_base.o 
-  00000626 000000 00002626 00000e96  1 .text.39 	init_base.o 
-  00000626 000284 00002626 00000e96  1 .text 	freemaster_appcmd.o 
+  000003e2 000030 000023e2 00000c52  2 INTC_InitINTCInterrupts 	IntcInterrupts.o 
+  00000412 000378 00002412 00000c82  1 .text 	init_base.o 
+  00000412 0001ee 00002412 00000c82  2 initModesAndClock 	init_base.o 
+  00000600 000032 00002600 00000e70  2 disableWatchdog 	init_base.o 
+  00000632 000018 00002632 00000ea2  2 enableIrq 	init_base.o 
+  0000064a 000042 0000264a 00000eba  2 initOutputClock 	init_base.o 
+  0000068c 000038 0000268c 00000efc  2 init_INTC 	init_base.o 
+  000006c4 0000c6 000026c4 00000f34  2 init_Linflex0 	init_base.o 
+  0000078a 000000 0000278a 00000ffa  1 .text.39 	init_base.o 
+  0000078a 000284 0000278a 00000ffa  1 .text 	freemaster_appcmd.o 
   UNUSED   000020 ........ ........    FMSTR_SCI_RDCLRSR freemaster_appcmd.o 
-  00000626 000048 00002626 00000e96  2 FMSTR_InitAppCmds 	freemaster_appcmd.o 
-  0000066e 0000be 0000266e 00000ede  2 FMSTR_StoreAppCmd 	freemaster_appcmd.o 
-  0000072c 00007c 0000272c 00000f9c  2 FMSTR_GetAppCmdStatus 	freemaster_appcmd.o 
-  000007a8 0000ca 000027a8 00001018  2 FMSTR_GetAppCmdRespData 	freemaster_appcmd.o 
-  00000872 000038 00002872 000010e2  2 FMSTR_FindAppCmdCallIndex 	freemaster_appcmd.o 
+  0000078a 000048 0000278a 00000ffa  2 FMSTR_InitAppCmds 	freemaster_appcmd.o 
+  000007d2 0000be 000027d2 00001042  2 FMSTR_StoreAppCmd 	freemaster_appcmd.o 
+  00000890 00007c 00002890 00001100  2 FMSTR_GetAppCmdStatus 	freemaster_appcmd.o 
+  0000090c 0000ca 0000290c 0000117c  2 FMSTR_GetAppCmdRespData 	freemaster_appcmd.o 
+  000009d6 000038 000029d6 00001246  2 FMSTR_FindAppCmdCallIndex 	freemaster_appcmd.o 
   UNUSED   000012 ........ ........    FMSTR_AppCmdAck freemaster_appcmd.o 
   UNUSED   000066 ........ ........    FMSTR_AppCmdSetResponseData freemaster_appcmd.o 
   UNUSED   000026 ........ ........    FMSTR_GetAppCmd freemaster_appcmd.o 
   UNUSED   00005a ........ ........    FMSTR_GetAppCmdData freemaster_appcmd.o 
   UNUSED   000090 ........ ........    FMSTR_RegisterAppCmdCall freemaster_appcmd.o 
-  000008aa 000000 000028aa 0000111a  1 .text.253 	freemaster_appcmd.o 
-  000008aa 0000c2 000028aa 0000111a  1 .text 	freemaster_MPC56xx.o 
+  00000a0e 000000 00002a0e 0000127e  1 .text.253 	freemaster_appcmd.o 
+  00000a0e 0000c2 00002a0e 0000127e  1 .text 	freemaster_MPC56xx.o 
   UNUSED   000020 ........ ........    FMSTR_SCI_RDCLRSR freemaster_MPC56xx.o 
   UNUSED   000002 ........ ........    FMSTR_Isr freemaster_MPC56xx.o 
-  000008aa 000028 000028aa 0000111a  2 FMSTR_CopyMemory 	freemaster_MPC56xx.o 
-  000008d2 00002a 000028d2 00001142  2 FMSTR_CopyToBuffer 	freemaster_MPC56xx.o 
-  000008fc 00002a 000028fc 0000116c  2 FMSTR_CopyFromBuffer 	freemaster_MPC56xx.o 
-  00000926 000046 00002926 00001196  2 FMSTR_CopyFromBufferWithMask 	freemaster_MPC56xx.o 
-  0000096c 000000 0000296c 000011dc  1 .text.163 	freemaster_MPC56xx.o 
-  0000096c 000358 0000296c 000011dc  1 .text 	freemaster_protocol.o 
+  00000a0e 000028 00002a0e 0000127e  2 FMSTR_CopyMemory 	freemaster_MPC56xx.o 
+  00000a36 00002a 00002a36 000012a6  2 FMSTR_CopyToBuffer 	freemaster_MPC56xx.o 
+  00000a60 00002a 00002a60 000012d0  2 FMSTR_CopyFromBuffer 	freemaster_MPC56xx.o 
+  00000a8a 000046 00002a8a 000012fa  2 FMSTR_CopyFromBufferWithMask 	freemaster_MPC56xx.o 
+  00000ad0 000000 00002ad0 00001340  1 .text.163 	freemaster_MPC56xx.o 
+  00000ad0 000358 00002ad0 00001340  1 .text 	freemaster_protocol.o 
   UNUSED   000020 ........ ........    FMSTR_SCI_RDCLRSR freemaster_protocol.o 
-  0000096c 00002a 0000296c 000011dc  2 FMSTR_Init 	freemaster_protocol.o 
-  00000996 000144 00002996 00001206  2 FMSTR_ProtocolDecoder 	freemaster_protocol.o 
-  00000ada 0000d4 00002ada 0000134a  2 FMSTR_GetBoardInfo 	freemaster_protocol.o 
-  00000bae 00006a 00002bae 0000141e  2 FMSTR_ReadMem 	freemaster_protocol.o 
+  00000ad0 00002a 00002ad0 00001340  2 FMSTR_Init 	freemaster_protocol.o 
+  00000afa 000144 00002afa 0000136a  2 FMSTR_ProtocolDecoder 	freemaster_protocol.o 
+  00000c3e 0000d4 00002c3e 000014ae  2 FMSTR_GetBoardInfo 	freemaster_protocol.o 
+  00000d12 00006a 00002d12 00001582  2 FMSTR_ReadMem 	freemaster_protocol.o 
   UNUSED   00004c ........ ........    FMSTR_ReadVar freemaster_protocol.o 
-  00000c18 000056 00002c18 00001488  2 FMSTR_WriteMem 	freemaster_protocol.o 
+  00000d7c 000056 00002d7c 000015ec  2 FMSTR_WriteMem 	freemaster_protocol.o 
   UNUSED   00004e ........ ........    FMSTR_WriteVar freemaster_protocol.o 
-  00000c6e 000056 00002c6e 000014de  2 FMSTR_WriteMemMask 	freemaster_protocol.o 
+  00000dd2 000056 00002dd2 00001642  2 FMSTR_WriteMemMask 	freemaster_protocol.o 
   UNUSED   00004e ........ ........    FMSTR_WriteVarMask freemaster_protocol.o 
   UNUSED   000024 ........ ........    FMSTR_StrLen freemaster_protocol.o 
-  00000cc4 000000 00002cc4 00001534  1 .text.290 	freemaster_protocol.o 
-  00000cc4 00060e 00002cc4 00001534  1 .text 	freemaster_rec.o 
+  00000e28 000000 00002e28 00001698  1 .text.290 	freemaster_protocol.o 
+  00000e28 00060e 00002e28 00001698  1 .text 	freemaster_rec.o 
   UNUSED   000020 ........ ........    FMSTR_SCI_RDCLRSR freemaster_rec.o 
-  00000cc4 000014 00002cc4 00001534  2 FMSTR_InitRec 	freemaster_rec.o 
+  00000e28 000014 00002e28 00001698  2 FMSTR_InitRec 	freemaster_rec.o 
   UNUSED   000002 ........ ........    FMSTR_SetUpRecBuff freemaster_rec.o 
-  00000cd8 00024e 00002cd8 00001548  2 FMSTR_SetUpRec 	freemaster_rec.o 
-  00000f26 000024 00002f26 00001796  2 FMSTR_TriggerRec 	freemaster_rec.o 
-  00000f4a 000072 00002f4a 000017ba  2 FMSTR_StartRec 	freemaster_rec.o 
-  00000fbc 000048 00002fbc 0000182c  2 FMSTR_StopRec 	freemaster_rec.o 
-  00001004 00003c 00003004 00001874  2 FMSTR_GetRecStatus 	freemaster_rec.o 
-  00001040 000004 00003040 000018b0  2 FMSTR_GetRecBuffSize 	freemaster_rec.o 
+  00000e3c 00024e 00002e3c 000016ac  2 FMSTR_SetUpRec 	freemaster_rec.o 
+  0000108a 000024 0000308a 000018fa  2 FMSTR_TriggerRec 	freemaster_rec.o 
+  000010ae 000072 000030ae 0000191e  2 FMSTR_StartRec 	freemaster_rec.o 
+  00001120 000048 00003120 00001990  2 FMSTR_StopRec 	freemaster_rec.o 
+  00001168 00003c 00003168 000019d8  2 FMSTR_GetRecStatus 	freemaster_rec.o 
+  000011a4 000004 000031a4 00001a14  2 FMSTR_GetRecBuffSize 	freemaster_rec.o 
   UNUSED   00004e ........ ........    FMSTR_IsInRecBuffer freemaster_rec.o 
-  00001044 000064 00003044 000018b4  2 FMSTR_GetRecBuff 	freemaster_rec.o 
-  000010a8 000028 000030a8 00001918  2 FMSTR_Compare8S 	freemaster_rec.o 
-  000010d0 000024 000030d0 00001940  2 FMSTR_Compare8U 	freemaster_rec.o 
-  000010f4 000026 000030f4 00001964  2 FMSTR_Compare16S 	freemaster_rec.o 
-  0000111a 000024 0000311a 0000198a  2 FMSTR_Compare16U 	freemaster_rec.o 
-  0000113e 000022 0000313e 000019ae  2 FMSTR_Compare32S 	freemaster_rec.o 
-  00001160 000022 00003160 000019d0  2 FMSTR_Compare32U 	freemaster_rec.o 
-  00001182 000020 00003182 000019f2  2 FMSTR_Recorder 	freemaster_rec.o 
-  000011a2 000130 000031a2 00001a12  2 FMSTR_Recorder2 	freemaster_rec.o 
-  000012d2 000000 000032d2 00001b42  1 .text.367 	freemaster_rec.o 
-  000012d2 00013a 000032d2 00001b42  1 .text 	freemaster_scope.o 
+  000011a8 000064 000031a8 00001a18  2 FMSTR_GetRecBuff 	freemaster_rec.o 
+  0000120c 000028 0000320c 00001a7c  2 FMSTR_Compare8S 	freemaster_rec.o 
+  00001234 000024 00003234 00001aa4  2 FMSTR_Compare8U 	freemaster_rec.o 
+  00001258 000026 00003258 00001ac8  2 FMSTR_Compare16S 	freemaster_rec.o 
+  0000127e 000024 0000327e 00001aee  2 FMSTR_Compare16U 	freemaster_rec.o 
+  000012a2 000022 000032a2 00001b12  2 FMSTR_Compare32S 	freemaster_rec.o 
+  000012c4 000022 000032c4 00001b34  2 FMSTR_Compare32U 	freemaster_rec.o 
+  000012e6 000020 000032e6 00001b56  2 FMSTR_Recorder 	freemaster_rec.o 
+  00001306 000130 00003306 00001b76  2 FMSTR_Recorder2 	freemaster_rec.o 
+  00001436 000000 00003436 00001ca6  1 .text.367 	freemaster_rec.o 
+  00001436 00013a 00003436 00001ca6  1 .text 	freemaster_scope.o 
   UNUSED   000020 ........ ........    FMSTR_SCI_RDCLRSR freemaster_scope.o 
-  000012d2 000002 000032d2 00001b42  2 FMSTR_InitScope 	freemaster_scope.o 
-  000012d4 0000be 000032d4 00001b44  2 FMSTR_SetUpScope 	freemaster_scope.o 
-  00001392 00007a 00003392 00001c02  2 FMSTR_ReadScope 	freemaster_scope.o 
-  0000140c 000000 0000340c 00001c7c  1 .text.130 	freemaster_scope.o 
-  0000140c 0003e6 0000340c 00001c7c  1 .text 	freemaster_serial.o 
-  0000140c 000020 0000340c 00001c7c  2 FMSTR_SCI_RDCLRSR 	freemaster_serial.o 
-  0000142c 00008c 0000342c 00001c9c  2 FMSTR_ProcessSCI 	freemaster_serial.o 
-  000014b8 000042 000034b8 00001d28  2 FMSTR_Listen 	freemaster_serial.o 
-  000014fa 000032 000034fa 00001d6a  2 FMSTR_SendError 	freemaster_serial.o 
-  0000152c 0000c0 0000352c 00001d9c  2 FMSTR_SendResponse 	freemaster_serial.o 
-  000015ec 000076 000035ec 00001e5c  2 FMSTR_Tx 	freemaster_serial.o 
-  00001662 00015a 00003662 00001ed2  2 FMSTR_Rx 	freemaster_serial.o 
-  000017bc 000022 000037bc 0000202c  2 FMSTR_InitSerial 	freemaster_serial.o 
-  000017de 000014 000037de 0000204e  2 FMSTR_Poll 	freemaster_serial.o 
-  000017f2 000000 000037f2 00002062  1 .text.195 	freemaster_serial.o 
-  000017f2 00003a 000037f2 00002062  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  000017f2 00001e 000037f2 00002062  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00001810 00001c 00003810 00002080  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001436 000002 00003436 00001ca6  2 FMSTR_InitScope 	freemaster_scope.o 
+  00001438 0000be 00003438 00001ca8  2 FMSTR_SetUpScope 	freemaster_scope.o 
+  000014f6 00007a 000034f6 00001d66  2 FMSTR_ReadScope 	freemaster_scope.o 
+  00001570 000000 00003570 00001de0  1 .text.130 	freemaster_scope.o 
+  00001570 0003e6 00003570 00001de0  1 .text 	freemaster_serial.o 
+  00001570 000020 00003570 00001de0  2 FMSTR_SCI_RDCLRSR 	freemaster_serial.o 
+  00001590 00008c 00003590 00001e00  2 FMSTR_ProcessSCI 	freemaster_serial.o 
+  0000161c 000042 0000361c 00001e8c  2 FMSTR_Listen 	freemaster_serial.o 
+  0000165e 000032 0000365e 00001ece  2 FMSTR_SendError 	freemaster_serial.o 
+  00001690 0000c0 00003690 00001f00  2 FMSTR_SendResponse 	freemaster_serial.o 
+  00001750 000076 00003750 00001fc0  2 FMSTR_Tx 	freemaster_serial.o 
+  000017c6 00015a 000037c6 00002036  2 FMSTR_Rx 	freemaster_serial.o 
+  00001920 000022 00003920 00002190  2 FMSTR_InitSerial 	freemaster_serial.o 
+  00001942 000014 00003942 000021b2  2 FMSTR_Poll 	freemaster_serial.o 
+  00001956 000000 00003956 000021c6  1 .text.195 	freemaster_serial.o 
+  00001956 00003a 00003956 000021c6  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001956 00001e 00003956 000021c6  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001974 00001c 00003974 000021e4  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00005a ........ ........    ExPPC_FindExceptionFragment__FPcP12FragmentInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   0000e2 ........ ........    ExPPC_FindExceptionRecord__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000006 ........ ........    ExPPC_PopR31__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
@@ -486,9 +491,9 @@ Link map of __start
   UNUSED   000086 ........ ........    __uncaught_exception_helper__FP12ThrowContext Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000028 ........ ........    __uncaught_exception Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00000a ........ ........    what__Q23std13bad_exceptionCFv Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  0000182c 000000 0000382c 0000209c  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  0000182c 000064 0000382c 0000209c  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
-  0000182c 00004a 0000382c 0000209c  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001990 000000 00003990 00002200  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001990 000064 00003990 00002200  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001990 00004a 00003990 00002200  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_15 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -521,7 +526,7 @@ Link map of __start
   UNUSED   000000 ........ ........    _save32gpr_28 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
-  0000186c 000000 0000386c 000020dc    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019d0 000000 000039d0 00002240    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -562,11 +567,11 @@ Link map of __start
   UNUSED   000000 ........ ........    _rest32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _restgpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _rest32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
-  00001876 000008 00003876 000020e6  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001878 000000 00003878 000020e8    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  0000187e 00000a 0000387e 000020ee  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001884 000000 00003884 000020f4    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001888 000008 00003888 000020f8  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019da 000008 000039da 0000224a  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019dc 000000 000039dc 0000224c    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019e2 00000a 000039e2 00002252  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019e8 000000 000039e8 00002258    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019ec 000008 000039ec 0000225c  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_29_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_28_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_27_exit Runtime.PPCEABI.VS.UC.a runtime.o
@@ -610,112 +615,112 @@ Link map of __start
   UNUSED   00001a ........ ........    __shl2i Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001a ........ ........    __shr2u Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001c ........ ........    __shr2i Runtime.PPCEABI.VS.UC.a runtime.o
-  00001890 000000 00003890 00002100  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001890 000050 00003890 00002100  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00001890 00002e 00003890 00002100  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  000018be 000022 000038be 0000212e  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000019f4 000000 000039f4 00002264  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000019f4 000050 000039f4 00002264  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000019f4 00002e 000039f4 00002264  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00001a22 000022 00003a22 00002292  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
 
 
 .rodata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 000038e0 00002150  1 .rodata 	__ppc_eabi_init.o 
-  00000000 00000c 000038e0 00002150  4 @22 	__ppc_eabi_init.o 
+  00000000 00000c 00003a48 000022b8  1 .rodata 	__ppc_eabi_init.o 
+  00000000 00000c 00003a48 000022b8  4 @22 	__ppc_eabi_init.o 
 
 
 .ctors section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000000 000038ec 0000215c  1 .ctors$00 	Linker Generated Symbol File 
-  00000000 000000 000038ec 0000215c  4 _ctors 	Linker Generated Symbol File 
-  00000000 000004 000038ec 0000215c  1 .ctors$10 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000000 000004 000038ec 0000215c  4 __init_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000004 000004 000038f0 00002160  1 .ctors$99 	Linker Generated Symbol File 
-  00000004 000004 000038f0 00002160  4 _ctors$99 	Linker Generated Symbol File 
+  00000000 000000 00003a54 000022c4  1 .ctors$00 	Linker Generated Symbol File 
+  00000000 000000 00003a54 000022c4  4 _ctors 	Linker Generated Symbol File 
+  00000000 000004 00003a54 000022c4  1 .ctors$10 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000000 000004 00003a54 000022c4  4 __init_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000004 000004 00003a58 000022c8  1 .ctors$99 	Linker Generated Symbol File 
+  00000004 000004 00003a58 000022c8  4 _ctors$99 	Linker Generated Symbol File 
 
 
 .dtors section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000000 000038f4 00002164  1 .dtors$00 	Linker Generated Symbol File 
-  00000000 000000 000038f4 00002164  4 _dtors 	Linker Generated Symbol File 
-  00000000 000004 000038f4 00002164  1 .dtors$15 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000000 000004 000038f4 00002164  4 __fini_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000004 000004 000038f8 00002168  1 .dtors$99 	Linker Generated Symbol File 
-  00000004 000004 000038f8 00002168  4 _dtors$99 	Linker Generated Symbol File 
+  00000000 000000 00003a5c 000022cc  1 .dtors$00 	Linker Generated Symbol File 
+  00000000 000000 00003a5c 000022cc  4 _dtors 	Linker Generated Symbol File 
+  00000000 000004 00003a5c 000022cc  1 .dtors$15 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000000 000004 00003a5c 000022cc  4 __fini_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000004 000004 00003a60 000022d0  1 .dtors$99 	Linker Generated Symbol File 
+  00000004 000004 00003a60 000022d0  4 _dtors$99 	Linker Generated Symbol File 
 
 
 extab section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 000038fc 0000216c  1 extab 	main.o 
-  00000000 000008 000038fc 0000216c  4 @18 	main.o 
-  00000008 000008 00003904 00002174  1 extab 	Exceptions.o 
-  00000008 000008 00003904 00002174  4 @5 	Exceptions.o 
-  00000010 000008 0000390c 0000217c  1 extab 	IntcInterrupts.o 
-  00000010 000008 0000390c 0000217c  4 @12 	IntcInterrupts.o 
-  00000018 000028 00003914 00002184  1 extab 	freemaster_appcmd.o 
+  00000000 000008 00003a64 000022d4  1 extab 	main.o 
+  00000000 000008 00003a64 000022d4  4 @18 	main.o 
+  00000008 000008 00003a6c 000022dc  1 extab 	Exceptions.o 
+  00000008 000008 00003a6c 000022dc  4 @5 	Exceptions.o 
+  00000010 000008 00003a74 000022e4  1 extab 	IntcInterrupts.o 
+  00000010 000008 00003a74 000022e4  4 @12 	IntcInterrupts.o 
+  00000018 000028 00003a7c 000022ec  1 extab 	freemaster_appcmd.o 
   UNUSED   000008 ........ ........    @28 freemaster_appcmd.o 
-  00000018 000008 00003914 00002184  4 @79 	freemaster_appcmd.o 
-  00000020 000008 0000391c 0000218c  4 @101 	freemaster_appcmd.o 
-  00000028 000008 00003924 00002194  4 @117 	freemaster_appcmd.o 
-  00000030 000008 0000392c 0000219c  4 @141 	freemaster_appcmd.o 
-  00000038 000008 00003934 000021a4  4 @156 	freemaster_appcmd.o 
+  00000018 000008 00003a7c 000022ec  4 @79 	freemaster_appcmd.o 
+  00000020 000008 00003a84 000022f4  4 @101 	freemaster_appcmd.o 
+  00000028 000008 00003a8c 000022fc  4 @117 	freemaster_appcmd.o 
+  00000030 000008 00003a94 00002304  4 @141 	freemaster_appcmd.o 
+  00000038 000008 00003a9c 0000230c  4 @156 	freemaster_appcmd.o 
   UNUSED   000008 ........ ........    @178 freemaster_appcmd.o 
   UNUSED   000008 ........ ........    @186 freemaster_appcmd.o 
   UNUSED   000008 ........ ........    @204 freemaster_appcmd.o 
   UNUSED   000008 ........ ........    @225 freemaster_appcmd.o 
-  00000040 000020 0000393c 000021ac  1 extab 	freemaster_MPC56xx.o 
+  00000040 000020 00003aa4 00002314  1 extab 	freemaster_MPC56xx.o 
   UNUSED   000008 ........ ........    @28 freemaster_MPC56xx.o 
-  00000040 000008 0000393c 000021ac  4 @86 	freemaster_MPC56xx.o 
-  00000048 000008 00003944 000021b4  4 @102 	freemaster_MPC56xx.o 
-  00000050 000008 0000394c 000021bc  4 @118 	freemaster_MPC56xx.o 
-  00000058 000008 00003954 000021c4  4 @138 	freemaster_MPC56xx.o 
-  00000060 000030 0000395c 000021cc  1 extab 	freemaster_protocol.o 
+  00000040 000008 00003aa4 00002314  4 @86 	freemaster_MPC56xx.o 
+  00000048 000008 00003aac 0000231c  4 @102 	freemaster_MPC56xx.o 
+  00000050 000008 00003ab4 00002324  4 @118 	freemaster_MPC56xx.o 
+  00000058 000008 00003abc 0000232c  4 @138 	freemaster_MPC56xx.o 
+  00000060 000030 00003ac4 00002334  1 extab 	freemaster_protocol.o 
   UNUSED   000008 ........ ........    @28 freemaster_protocol.o 
-  00000060 000008 0000395c 000021cc  4 @74 	freemaster_protocol.o 
-  00000068 000008 00003964 000021d4  4 @106 	freemaster_protocol.o 
-  00000070 000008 0000396c 000021dc  4 @144 	freemaster_protocol.o 
-  00000078 000008 00003974 000021e4  4 @163 	freemaster_protocol.o 
+  00000060 000008 00003ac4 00002334  4 @74 	freemaster_protocol.o 
+  00000068 000008 00003acc 0000233c  4 @106 	freemaster_protocol.o 
+  00000070 000008 00003ad4 00002344  4 @144 	freemaster_protocol.o 
+  00000078 000008 00003adc 0000234c  4 @163 	freemaster_protocol.o 
   UNUSED   000008 ........ ........    @178 freemaster_protocol.o 
-  00000080 000008 0000397c 000021ec  4 @194 	freemaster_protocol.o 
+  00000080 000008 00003ae4 00002354  4 @194 	freemaster_protocol.o 
   UNUSED   000008 ........ ........    @208 freemaster_protocol.o 
-  00000088 000008 00003984 000021f4  4 @224 	freemaster_protocol.o 
+  00000088 000008 00003aec 0000235c  4 @224 	freemaster_protocol.o 
   UNUSED   000008 ........ ........    @238 freemaster_protocol.o 
   UNUSED   000008 ........ ........    @252 freemaster_protocol.o 
-  00000090 000068 0000398c 000021fc  1 extab 	freemaster_rec.o 
+  00000090 000068 00003af4 00002364  1 extab 	freemaster_rec.o 
   UNUSED   000008 ........ ........    @28 freemaster_rec.o 
-  00000090 000008 0000398c 000021fc  4 @150 	freemaster_rec.o 
-  00000098 000008 00003994 00002204  4 @169 	freemaster_rec.o 
-  000000a0 000008 0000399c 0000220c  4 @183 	freemaster_rec.o 
-  000000a8 000008 000039a4 00002214  4 @197 	freemaster_rec.o 
+  00000090 000008 00003af4 00002364  4 @150 	freemaster_rec.o 
+  00000098 000008 00003afc 0000236c  4 @169 	freemaster_rec.o 
+  000000a0 000008 00003b04 00002374  4 @183 	freemaster_rec.o 
+  000000a8 000008 00003b0c 0000237c  4 @197 	freemaster_rec.o 
   UNUSED   000008 ........ ........    @217 freemaster_rec.o 
-  000000b0 000008 000039ac 0000221c  4 @233 	freemaster_rec.o 
-  000000b8 000008 000039b4 00002224  4 @243 	freemaster_rec.o 
-  000000c0 000008 000039bc 0000222c  4 @253 	freemaster_rec.o 
-  000000c8 000008 000039c4 00002234  4 @263 	freemaster_rec.o 
-  000000d0 000008 000039cc 0000223c  4 @273 	freemaster_rec.o 
-  000000d8 000008 000039d4 00002244  4 @283 	freemaster_rec.o 
-  000000e0 000008 000039dc 0000224c  4 @293 	freemaster_rec.o 
-  000000e8 000008 000039e4 00002254  4 @301 	freemaster_rec.o 
-  000000f0 000008 000039ec 0000225c  4 @335 	freemaster_rec.o 
-  000000f8 000010 000039f4 00002264  1 extab 	freemaster_scope.o 
+  000000b0 000008 00003b14 00002384  4 @233 	freemaster_rec.o 
+  000000b8 000008 00003b1c 0000238c  4 @243 	freemaster_rec.o 
+  000000c0 000008 00003b24 00002394  4 @253 	freemaster_rec.o 
+  000000c8 000008 00003b2c 0000239c  4 @263 	freemaster_rec.o 
+  000000d0 000008 00003b34 000023a4  4 @273 	freemaster_rec.o 
+  000000d8 000008 00003b3c 000023ac  4 @283 	freemaster_rec.o 
+  000000e0 000008 00003b44 000023b4  4 @293 	freemaster_rec.o 
+  000000e8 000008 00003b4c 000023bc  4 @301 	freemaster_rec.o 
+  000000f0 000008 00003b54 000023c4  4 @335 	freemaster_rec.o 
+  000000f8 000010 00003b5c 000023cc  1 extab 	freemaster_scope.o 
   UNUSED   000008 ........ ........    @28 freemaster_scope.o 
-  000000f8 000008 000039f4 00002264  4 @98 	freemaster_scope.o 
-  00000100 000008 000039fc 0000226c  4 @116 	freemaster_scope.o 
-  00000108 000040 00003a04 00002274  1 extab 	freemaster_serial.o 
-  00000108 000008 00003a04 00002274  4 @28 	freemaster_serial.o 
-  00000110 000008 00003a0c 0000227c  4 @88 	freemaster_serial.o 
-  00000118 000008 00003a14 00002284  4 @99 	freemaster_serial.o 
-  00000120 000008 00003a1c 0000228c  4 @121 	freemaster_serial.o 
-  00000128 000008 00003a24 00002294  4 @135 	freemaster_serial.o 
-  00000130 000008 00003a2c 0000229c  4 @169 	freemaster_serial.o 
-  00000138 000008 00003a34 000022a4  4 @175 	freemaster_serial.o 
-  00000140 000008 00003a3c 000022ac  4 @181 	freemaster_serial.o 
+  000000f8 000008 00003b5c 000023cc  4 @98 	freemaster_scope.o 
+  00000100 000008 00003b64 000023d4  4 @116 	freemaster_scope.o 
+  00000108 000040 00003b6c 000023dc  1 extab 	freemaster_serial.o 
+  00000108 000008 00003b6c 000023dc  4 @28 	freemaster_serial.o 
+  00000110 000008 00003b74 000023e4  4 @88 	freemaster_serial.o 
+  00000118 000008 00003b7c 000023ec  4 @99 	freemaster_serial.o 
+  00000120 000008 00003b84 000023f4  4 @121 	freemaster_serial.o 
+  00000128 000008 00003b8c 000023fc  4 @135 	freemaster_serial.o 
+  00000130 000008 00003b94 00002404  4 @169 	freemaster_serial.o 
+  00000138 000008 00003b9c 0000240c  4 @175 	freemaster_serial.o 
+  00000140 000008 00003ba4 00002414  4 @181 	freemaster_serial.o 
 
 
 extabindex section layout
@@ -758,49 +763,51 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000010 40001368 00002828  1 .sbss 	main.o 
+  00000000 000014 40001368 00002828  1 .sbss 	main.o 
   00000000 000004 40001368 00002828  4 i 	main.o 
   00000004 000001 4000136c 0000282c  1 cnt 	main.o 
   00000008 000004 40001370 00002830  4 SW 	main.o 
   0000000c 000004 40001374 00002834  4 SWold 	main.o 
-  00000010 000009 40001378 00002838  1 .sbss 	freemaster_appcmd.o 
-  00000010 000004 40001378 00002838  4 pcm_pAppCmdCallId 	freemaster_appcmd.o 
-  00000014 000001 4000137c 0000283c  1 pcm_nAppCmdResultDataLen 	freemaster_appcmd.o 
-  00000015 000001 4000137d 0000283d  1 pcm_nAppCmdResult 	freemaster_appcmd.o 
-  00000016 000002 4000137e 0000283e  2 pcm_nAppCmdLen 	freemaster_appcmd.o 
-  00000018 000001 40001380 00002840  1 pcm_nAppCmd 	freemaster_appcmd.o 
-  00000019 000007 40001388 00002848  8 *fill*
-  00000020 00003a 40001388 00002848  1 .sbss 	freemaster_rec.o 
-  00000020 000004 40001388 00002848  4 pcm_pCompareFunc 	freemaster_rec.o 
-  00000024 000004 4000138c 0000284c  4 pcm_nRecBuffAddr 	freemaster_rec.o 
-  00000028 000004 40001390 00002850  4 pcm_uTrgThreshold 	freemaster_rec.o 
-  0000002c 000001 40001394 00002854  1 pcm_bTrgVarSigned 	freemaster_rec.o 
-  0000002d 000001 40001395 00002855  1 pcm_nTrgVarSize 	freemaster_rec.o 
-  00000030 000004 40001398 00002858  4 pcm_nTrgVarAddr 	freemaster_rec.o 
-  00000034 000004 4000139c 0000285c  4 pcm_dwRecEndBuffPtr 	freemaster_rec.o 
-  00000038 000004 400013a0 00002860  4 pcm_dwRecWritePtr 	freemaster_rec.o 
-  0000003c 000002 400013a4 00002864  2 pcm_wRecBuffStartIx 	freemaster_rec.o 
-  00000040 000004 400013a8 00002868  4 pcm_wRecFlags 	freemaster_rec.o 
-  00000044 000002 400013ac 0000286c  2 pcm_wStoprecCountDown 	freemaster_rec.o 
-  00000046 000002 400013ae 0000286e  2 pcm_wRecTimeDivCtr 	freemaster_rec.o 
-  00000048 000008 400013b0 00002870  8 pcm_pRecVarSize 	freemaster_rec.o 
-  00000050 000001 400013b8 00002878  1 pcm_nRecVarCount 	freemaster_rec.o 
-  00000052 000002 400013ba 0000287a  2 pcm_wRecTimeDiv 	freemaster_rec.o 
-  00000054 000001 400013bc 0000287c  1 pcm_nRecTriggerMode 	freemaster_rec.o 
-  00000056 000002 400013be 0000287e  2 pcm_wRecPostTrigger 	freemaster_rec.o 
-  00000058 000002 400013c0 00002880  2 pcm_wRecTotalSmps 	freemaster_rec.o 
-  0000005a 000006 400013c8 00002888  8 *fill*
-  00000060 000009 400013c8 00002888  1 .sbss 	freemaster_scope.o 
-  00000060 000008 400013c8 00002888  8 pcm_pScopeVarSize 	freemaster_scope.o 
-  00000068 000001 400013d0 00002890  1 pcm_nScopeVarCount 	freemaster_scope.o 
-  00000069 000007 400013d8 00002898  8 *fill*
-  00000070 000014 400013d8 00002898  1 .sbss 	freemaster_serial.o 
-  00000070 000001 400013d8 00002898  1 pcm_nRxCheckSum 	freemaster_serial.o 
-  00000074 000004 400013dc 0000289c  4 pcm_pRxBuff 	freemaster_serial.o 
-  00000078 000004 400013e0 000028a0  4 pcm_pTxBuff 	freemaster_serial.o 
-  0000007c 000001 400013e4 000028a4  1 pcm_nRxTodo 	freemaster_serial.o 
-  0000007d 000001 400013e5 000028a5  1 pcm_nTxTodo 	freemaster_serial.o 
-  00000080 000004 400013e8 000028a8  4 pcm_wFlags 	freemaster_serial.o 
+  00000010 000004 40001378 00002838  4 R_adc 	main.o 
+  00000014 000004 40001380 00002840  8 *fill*
+  00000018 000009 40001380 00002840  1 .sbss 	freemaster_appcmd.o 
+  00000018 000004 40001380 00002840  4 pcm_pAppCmdCallId 	freemaster_appcmd.o 
+  0000001c 000001 40001384 00002844  1 pcm_nAppCmdResultDataLen 	freemaster_appcmd.o 
+  0000001d 000001 40001385 00002845  1 pcm_nAppCmdResult 	freemaster_appcmd.o 
+  0000001e 000002 40001386 00002846  2 pcm_nAppCmdLen 	freemaster_appcmd.o 
+  00000020 000001 40001388 00002848  1 pcm_nAppCmd 	freemaster_appcmd.o 
+  00000021 000007 40001390 00002850  8 *fill*
+  00000028 00003a 40001390 00002850  1 .sbss 	freemaster_rec.o 
+  00000028 000004 40001390 00002850  4 pcm_pCompareFunc 	freemaster_rec.o 
+  0000002c 000004 40001394 00002854  4 pcm_nRecBuffAddr 	freemaster_rec.o 
+  00000030 000004 40001398 00002858  4 pcm_uTrgThreshold 	freemaster_rec.o 
+  00000034 000001 4000139c 0000285c  1 pcm_bTrgVarSigned 	freemaster_rec.o 
+  00000035 000001 4000139d 0000285d  1 pcm_nTrgVarSize 	freemaster_rec.o 
+  00000038 000004 400013a0 00002860  4 pcm_nTrgVarAddr 	freemaster_rec.o 
+  0000003c 000004 400013a4 00002864  4 pcm_dwRecEndBuffPtr 	freemaster_rec.o 
+  00000040 000004 400013a8 00002868  4 pcm_dwRecWritePtr 	freemaster_rec.o 
+  00000044 000002 400013ac 0000286c  2 pcm_wRecBuffStartIx 	freemaster_rec.o 
+  00000048 000004 400013b0 00002870  4 pcm_wRecFlags 	freemaster_rec.o 
+  0000004c 000002 400013b4 00002874  2 pcm_wStoprecCountDown 	freemaster_rec.o 
+  0000004e 000002 400013b6 00002876  2 pcm_wRecTimeDivCtr 	freemaster_rec.o 
+  00000050 000008 400013b8 00002878  8 pcm_pRecVarSize 	freemaster_rec.o 
+  00000058 000001 400013c0 00002880  1 pcm_nRecVarCount 	freemaster_rec.o 
+  0000005a 000002 400013c2 00002882  2 pcm_wRecTimeDiv 	freemaster_rec.o 
+  0000005c 000001 400013c4 00002884  1 pcm_nRecTriggerMode 	freemaster_rec.o 
+  0000005e 000002 400013c6 00002886  2 pcm_wRecPostTrigger 	freemaster_rec.o 
+  00000060 000002 400013c8 00002888  2 pcm_wRecTotalSmps 	freemaster_rec.o 
+  00000062 000006 400013d0 00002890  8 *fill*
+  00000068 000009 400013d0 00002890  1 .sbss 	freemaster_scope.o 
+  00000068 000008 400013d0 00002890  8 pcm_pScopeVarSize 	freemaster_scope.o 
+  00000070 000001 400013d8 00002898  1 pcm_nScopeVarCount 	freemaster_scope.o 
+  00000071 000007 400013e0 000028a0  8 *fill*
+  00000078 000014 400013e0 000028a0  1 .sbss 	freemaster_serial.o 
+  00000078 000001 400013e0 000028a0  1 pcm_nRxCheckSum 	freemaster_serial.o 
+  0000007c 000004 400013e4 000028a4  4 pcm_pRxBuff 	freemaster_serial.o 
+  00000080 000004 400013e8 000028a8  4 pcm_pTxBuff 	freemaster_serial.o 
+  00000084 000001 400013ec 000028ac  1 pcm_nRxTodo 	freemaster_serial.o 
+  00000085 000001 400013ed 000028ad  1 pcm_nTxTodo 	freemaster_serial.o 
+  00000088 000004 400013f0 000028b0  4 pcm_wFlags 	freemaster_serial.o 
 
 
 .sdata2 section layout
@@ -819,67 +826,67 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000030 400013f0 00002828  1 .bss 	freemaster_appcmd.o 
-  00000000 000010 400013f0 00002828  8 pcm_pAppCmdCallFunc 	freemaster_appcmd.o 
-  00000010 000020 40001400 00002838  8 pcm_pAppCmdBuff 	freemaster_appcmd.o 
-  00000030 000420 40001420 00002858  1 .bss 	freemaster_rec.o 
-  00000030 000400 40001420 00002858  8 pcm_pOwnRecBuffer 	freemaster_rec.o 
-  00000430 000020 40001820 00002c58  8 pcm_pRecVarAddr 	freemaster_rec.o 
-  00000450 000020 40001840 00002c78  1 .bss 	freemaster_scope.o 
-  00000450 000020 40001840 00002c78  8 pcm_pScopeVarAddr 	freemaster_scope.o 
-  00000470 00003d 40001860 00002c98  1 .bss 	freemaster_serial.o 
-  00000470 00003d 40001860 00002c98  4 pcm_pCommBuffer 	freemaster_serial.o 
-  000004ad 000003 400018a0 00002cd8  8 *fill*
-  000004b0 00000c 400018a0 00002cd8  1 .bss 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  000004b0 00000c 400018a0 00002cd8  4 fragmentinfo 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00000000 000030 400013f8 00002828  1 .bss 	freemaster_appcmd.o 
+  00000000 000010 400013f8 00002828  8 pcm_pAppCmdCallFunc 	freemaster_appcmd.o 
+  00000010 000020 40001408 00002838  8 pcm_pAppCmdBuff 	freemaster_appcmd.o 
+  00000030 000420 40001428 00002858  1 .bss 	freemaster_rec.o 
+  00000030 000400 40001428 00002858  8 pcm_pOwnRecBuffer 	freemaster_rec.o 
+  00000430 000020 40001828 00002c58  8 pcm_pRecVarAddr 	freemaster_rec.o 
+  00000450 000020 40001848 00002c78  1 .bss 	freemaster_scope.o 
+  00000450 000020 40001848 00002c78  8 pcm_pScopeVarAddr 	freemaster_scope.o 
+  00000470 00003d 40001868 00002c98  1 .bss 	freemaster_serial.o 
+  00000470 00003d 40001868 00002c98  4 pcm_pCommBuffer 	freemaster_serial.o 
+  000004ad 000003 400018a8 00002cd8  8 *fill*
+  000004b0 00000c 400018a8 00002cd8  1 .bss 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  000004b0 00000c 400018a8 00002cd8  4 fragmentinfo 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
 
 
 extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 00003a44 000024d0  4 @19 	main.o 
-  0000000c 00000c 00003a50 000024d0  4 @80 	freemaster_appcmd.o 
-  00000018 00000c 00003a5c 000024d0  4 @102 	freemaster_appcmd.o 
-  00000024 00000c 00003a68 000024d0  4 @118 	freemaster_appcmd.o 
-  00000030 00000c 00003a74 000024d0  4 @142 	freemaster_appcmd.o 
-  0000003c 00000c 00003a80 000024d0  4 @157 	freemaster_appcmd.o 
-  00000048 00000c 00003a8c 000024d0  4 @87 	freemaster_MPC56xx.o 
-  00000054 00000c 00003a98 000024d0  4 @103 	freemaster_MPC56xx.o 
-  00000060 00000c 00003aa4 000024d0  4 @119 	freemaster_MPC56xx.o 
-  0000006c 00000c 00003ab0 000024d0  4 @139 	freemaster_MPC56xx.o 
-  00000078 00000c 00003abc 000024d0  4 @75 	freemaster_protocol.o 
-  00000084 00000c 00003ac8 000024d0  4 @107 	freemaster_protocol.o 
-  00000090 00000c 00003ad4 000024d0  4 @145 	freemaster_protocol.o 
-  0000009c 00000c 00003ae0 000024d0  4 @164 	freemaster_protocol.o 
-  000000a8 00000c 00003aec 000024d0  4 @195 	freemaster_protocol.o 
-  000000b4 00000c 00003af8 000024d0  4 @225 	freemaster_protocol.o 
-  000000c0 00000c 00003b04 000024d0  4 @151 	freemaster_rec.o 
-  000000cc 00000c 00003b10 000024d0  4 @170 	freemaster_rec.o 
-  000000d8 00000c 00003b1c 000024d0  4 @184 	freemaster_rec.o 
-  000000e4 00000c 00003b28 000024d0  4 @198 	freemaster_rec.o 
-  000000f0 00000c 00003b34 000024d0  4 @234 	freemaster_rec.o 
-  000000fc 00000c 00003b40 000024d0  4 @244 	freemaster_rec.o 
-  00000108 00000c 00003b4c 000024d0  4 @254 	freemaster_rec.o 
-  00000114 00000c 00003b58 000024d0  4 @264 	freemaster_rec.o 
-  00000120 00000c 00003b64 000024d0  4 @274 	freemaster_rec.o 
-  0000012c 00000c 00003b70 000024d0  4 @284 	freemaster_rec.o 
-  00000138 00000c 00003b7c 000024d0  4 @294 	freemaster_rec.o 
-  00000144 00000c 00003b88 000024d0  4 @302 	freemaster_rec.o 
-  00000150 00000c 00003b94 000024d0  4 @336 	freemaster_rec.o 
-  0000015c 00000c 00003ba0 000024d0  4 @99 	freemaster_scope.o 
-  00000168 00000c 00003bac 000024d0  4 @117 	freemaster_scope.o 
-  00000174 00000c 00003bb8 000024d0  4 @29 	freemaster_serial.o 
-  00000180 00000c 00003bc4 000024d0  4 @89 	freemaster_serial.o 
-  0000018c 00000c 00003bd0 000024d0  4 @100 	freemaster_serial.o 
-  00000198 00000c 00003bdc 000024d0  4 @122 	freemaster_serial.o 
-  000001a4 00000c 00003be8 000024d0  4 @136 	freemaster_serial.o 
-  000001b0 00000c 00003bf4 000024d0  4 @170 	freemaster_serial.o 
-  000001bc 00000c 00003c00 000024d0  4 @176 	freemaster_serial.o 
-  000001c8 00000c 00003c0c 000024d0  4 @182 	freemaster_serial.o 
-  000001d4 00000c 00003c18 000024d0  4 @6 	Exceptions.o 
-  000001e0 00000c 00003c24 000024d0  4 @13 	IntcInterrupts.o 
-  000001ec 000030 00003c30 000024d0  4 _eti_init_info 	Linker Generated Symbol File 
+  00000000 00000c 00003bac 00002638  4 @19 	main.o 
+  0000000c 00000c 00003bb8 00002638  4 @80 	freemaster_appcmd.o 
+  00000018 00000c 00003bc4 00002638  4 @102 	freemaster_appcmd.o 
+  00000024 00000c 00003bd0 00002638  4 @118 	freemaster_appcmd.o 
+  00000030 00000c 00003bdc 00002638  4 @142 	freemaster_appcmd.o 
+  0000003c 00000c 00003be8 00002638  4 @157 	freemaster_appcmd.o 
+  00000048 00000c 00003bf4 00002638  4 @87 	freemaster_MPC56xx.o 
+  00000054 00000c 00003c00 00002638  4 @103 	freemaster_MPC56xx.o 
+  00000060 00000c 00003c0c 00002638  4 @119 	freemaster_MPC56xx.o 
+  0000006c 00000c 00003c18 00002638  4 @139 	freemaster_MPC56xx.o 
+  00000078 00000c 00003c24 00002638  4 @75 	freemaster_protocol.o 
+  00000084 00000c 00003c30 00002638  4 @107 	freemaster_protocol.o 
+  00000090 00000c 00003c3c 00002638  4 @145 	freemaster_protocol.o 
+  0000009c 00000c 00003c48 00002638  4 @164 	freemaster_protocol.o 
+  000000a8 00000c 00003c54 00002638  4 @195 	freemaster_protocol.o 
+  000000b4 00000c 00003c60 00002638  4 @225 	freemaster_protocol.o 
+  000000c0 00000c 00003c6c 00002638  4 @151 	freemaster_rec.o 
+  000000cc 00000c 00003c78 00002638  4 @170 	freemaster_rec.o 
+  000000d8 00000c 00003c84 00002638  4 @184 	freemaster_rec.o 
+  000000e4 00000c 00003c90 00002638  4 @198 	freemaster_rec.o 
+  000000f0 00000c 00003c9c 00002638  4 @234 	freemaster_rec.o 
+  000000fc 00000c 00003ca8 00002638  4 @244 	freemaster_rec.o 
+  00000108 00000c 00003cb4 00002638  4 @254 	freemaster_rec.o 
+  00000114 00000c 00003cc0 00002638  4 @264 	freemaster_rec.o 
+  00000120 00000c 00003ccc 00002638  4 @274 	freemaster_rec.o 
+  0000012c 00000c 00003cd8 00002638  4 @284 	freemaster_rec.o 
+  00000138 00000c 00003ce4 00002638  4 @294 	freemaster_rec.o 
+  00000144 00000c 00003cf0 00002638  4 @302 	freemaster_rec.o 
+  00000150 00000c 00003cfc 00002638  4 @336 	freemaster_rec.o 
+  0000015c 00000c 00003d08 00002638  4 @99 	freemaster_scope.o 
+  00000168 00000c 00003d14 00002638  4 @117 	freemaster_scope.o 
+  00000174 00000c 00003d20 00002638  4 @29 	freemaster_serial.o 
+  00000180 00000c 00003d2c 00002638  4 @89 	freemaster_serial.o 
+  0000018c 00000c 00003d38 00002638  4 @100 	freemaster_serial.o 
+  00000198 00000c 00003d44 00002638  4 @122 	freemaster_serial.o 
+  000001a4 00000c 00003d50 00002638  4 @136 	freemaster_serial.o 
+  000001b0 00000c 00003d5c 00002638  4 @170 	freemaster_serial.o 
+  000001bc 00000c 00003d68 00002638  4 @176 	freemaster_serial.o 
+  000001c8 00000c 00003d74 00002638  4 @182 	freemaster_serial.o 
+  000001d4 00000c 00003d80 00002638  4 @6 	Exceptions.o 
+  000001e0 00000c 00003d8c 00002638  4 @13 	IntcInterrupts.o 
+  000001ec 000030 00003d98 00002638  4 _eti_init_info 	Linker Generated Symbol File 
   UNUSED   00000c ........ ........    @29 freemaster_appcmd.o 
   UNUSED   00000c ........ ........    @179 freemaster_appcmd.o 
   UNUSED   00000c ........ ........    @187 freemaster_appcmd.o 
@@ -922,25 +929,25 @@ Memory map:
              .init_vle 000000e8 0000020c 000004b0 000000e8 000000e8         13
     .ivor_branch_table 00001000 00000100 000006c0 00001000 00001000         40
   .__exception_handlers 00001100 000000a8 000007c0 00001100 00001100         53
-             .text_vle 00002000 000018e0 00000870 00002000 00002000         62
-               .rodata 000038e0 0000000c 00002150 000038e0 000038e0        381
-                .ctors 000038ec 00000008 0000215c 000038ec 000038ec        382
-                .dtors 000038f4 00000008 00002164 000038f4 000038f4        383
-                 extab 000038fc 00000148 0000216c 000038fc 000038fc        384
-            extabindex 00003a44 0000021c 000022b4 00003a44 00003a44        401
+             .text_vle 00002000 00001a44 00000870 00002000 00002000         62
+               .rodata 00003a48 0000000c 000022b8 00003a48 00003a48        399
+                .ctors 00003a54 00000008 000022c4 00003a54 00003a54        400
+                .dtors 00003a5c 00000008 000022cc 00003a5c 00003a5c        401
+                 extab 00003a64 00000148 000022d4 00003a64 00003a64        402
+            extabindex 00003bac 0000021c 0000241c 00003bac 00003bac        419
   .__uninitialized_intc_handlertable 40000000 00001340 00002800 00004000 00004000          0
-                 .data 40001340 00000018 00002800 00004000 00004000        428
-                .sdata 40001358 0000000c 00002818 00004018 00004018        430
-                 .sbss 40001368 00000084 00002828 00004028 00004028          0
-               .sdata2 400013ec 00000000 00002828 00004028 00004028          0
-                .sbss2 400013ec 00000000 00002828 00004028 00004028          0
-                  .bss 400013f0 000004bc 00002828 00004028 00004028          0
-      .PPC.EMB.apuinfo 0000a6bc 00000000 0000cef0 0000e6e4 0000e6e4          0
+                 .data 40001340 00000018 00002800 00004000 00004000        446
+                .sdata 40001358 0000000c 00002818 00004018 00004018        448
+                 .sbss 40001368 0000008c 00002828 00004028 00004028          0
+               .sdata2 400013f4 00000000 00002828 00004028 00004028          0
+                .sbss2 400013f4 00000000 00002828 00004028 00004028          0
+                  .bss 400013f8 000004bc 00002828 00004028 00004028          0
+      .PPC.EMB.apuinfo 0000abd8 00000000 0000d400 0000ec00 0000ec00          0
          .debug_abbrev          00000195 00002828
-           .debug_info          0000378e 000029bd
-           .debug_line          00003144 0000614b
-            .debug_loc          00000ff8 0000928f
-       .debug_pubnames          000008e1 0000a287
+           .debug_info          00003a89 000029bd
+           .debug_line          000032ce 00006446
+            .debug_loc          0000101e 00009714
+       .debug_pubnames          00000907 0000a732
 
 
 Linker generated symbols:
@@ -966,22 +973,22 @@ _f___exception_handlers_rom 00001100
                   _e_text 00002000
               _f_text_vle 00002000
           _f_text_vle_rom 00002000
-              _e_text_vle 000038e0
-                _f_rodata 000038e0
-            _f_rodata_rom 000038e0
-                _e_rodata 000038ec
-                 _f_ctors 000038ec
-             _f_ctors_rom 000038ec
-                 _e_ctors 000038f4
-                 _f_dtors 000038f4
-             _f_dtors_rom 000038f4
-                 _e_dtors 000038fc
-                  _fextab 000038fc
-              _fextab_rom 000038fc
-                  _eextab 00003a44
-             _fextabindex 00003a44
-         _fextabindex_rom 00003a44
-             _eextabindex 00003c60
+              _e_text_vle 00003a44
+                _f_rodata 00003a48
+            _f_rodata_rom 00003a48
+                _e_rodata 00003a54
+                 _f_ctors 00003a54
+             _f_ctors_rom 00003a54
+                 _e_ctors 00003a5c
+                 _f_dtors 00003a5c
+             _f_dtors_rom 00003a5c
+                 _e_dtors 00003a64
+                  _fextab 00003a64
+              _fextab_rom 00003a64
+                  _eextab 00003bac
+             _fextabindex 00003bac
+         _fextabindex_rom 00003bac
+             _eextabindex 00003dc8
 _f___uninitialized_intc_handlertable 40000000
 _e___uninitialized_intc_handlertable 40001340
                   _f_data 40001340
@@ -991,21 +998,21 @@ _e___uninitialized_intc_handlertable 40001340
              _f_sdata_rom 00004018
                  _e_sdata 40001364
                   _f_sbss 40001368
-                  _e_sbss 400013ec
-                _f_sdata2 400013ec
+                  _e_sbss 400013f4
+                _f_sdata2 400013f4
             _f_sdata2_rom 00004028
-                _e_sdata2 400013ec
-                 _f_sbss2 400013ec
-                 _e_sbss2 400013ec
-                   _f_bss 400013f0
-                   _e_bss 400018ac
+                _e_sdata2 400013f4
+                 _f_sbss2 400013f4
+                 _e_sbss2 400013f4
+                   _f_bss 400013f8
+                   _e_bss 400018b4
               _stack_addr 4000a000
                _stack_end 40009000
                _heap_addr 40008000
                 _heap_end 40009000
-             _nbfunctions 00000052
+             _nbfunctions 00000054
            SIZEOF_HEADERS 000003e0
                _SDA_BASE_ 40009358
-              _SDA2_BASE_ 400093ec
+              _SDA2_BASE_ 400093f4
            _ABS_SDA_BASE_ 40009358
-          _ABS_SDA2_BASE_ 400093ec
+          _ABS_SDA2_BASE_ 400093f4

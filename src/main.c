@@ -14,6 +14,8 @@ int LED[4];
 void LED_Init();
 void LED_Control();
 void Switch_Control();
+void ADC1_Init();
+void ADCRead_1();
 
 int main(void)
 {
@@ -25,6 +27,7 @@ int main(void)
 	init_INTC();
 	init_Linflex0();
 	LED_Init();
+	ADC1_Init();
 
 	/* Loop forever */
 	for (;;) 
@@ -34,6 +37,7 @@ int main(void)
 
 		LED_Control();
 		Switch_Control();
+		ADCRead_1();
 		
 		i++;
 	}
@@ -86,3 +90,42 @@ void Switch_Control()
 	
 }
 
+void ADC1_Init()
+{
+	SIU.PCR[64].R = 0x2400;			   // ADC_1
+	
+	ADC_1.MCR.B.ABORT = 1;             // Abort ADC_1
+	
+	ADC_1.MCR.B.OWREN = 0;			   // disable overwritting
+	ADC_1.MCR.B.WLSIDE = 0;			   // conversion data is written right_aligned
+	ADC_1.MCR.B.MODE = 0;			   // One Shot mode
+	ADC_1.MCR.B.CTUEN = 0;			   // disable CTU triggered
+	ADC_1.MCR.B.ADCLKSEL = 0;		   // Set ADClock 32MHz
+	// ADC_1.MCR.B.ADCLKSEL = 1;	   // Set ADClock 64MHz
+	ADC_1.MCR.B.ACK0 = 0;			   // disable auto clock off
+	ADC_1.MCR.B.PWDN = 0;			   // disable power down mode
+	
+	ADC_1.CTR[0].R = 0x00008208;
+	
+	ADC_1.NCMR[0].R = 0x00000020;	   // Select ANS5 inputs for conversions
+	ADC_1.CDR[5].R = 0x00000000;	   // Channel[5] Set default
+	
+	ADC_1.MCR.B.ABORT = 0;			   // Exit Abort state
+	
+}
+
+int R_adc = 0;
+
+void ADCRead_1()
+{
+	ADC_1.MCR.B.NSTART = 1;		// Module 1 Conversion Start
+	asm("nop");
+	
+	while(ADC_1.MCR.B.NSTART) asm("nop");
+	R_adc = ADC_1.CDR[5].B.CDATA;
+	
+	LED1 = ((((unsigned int)R_adc)>>6) & (0x01)) == 0;
+	LED2 = ((((unsigned int)R_adc)>>7) & (0x01)) == 0;
+	LED3 = ((((unsigned int)R_adc)>>8) & (0x01)) == 0;
+	LED4 = ((((unsigned int)R_adc)>>9) & (0x01)) == 0;
+}
