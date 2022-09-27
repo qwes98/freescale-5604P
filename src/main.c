@@ -5,15 +5,11 @@
 volatile int i = 0;
 uint8_t LED1=1, LED2=1, LED3=1, LED4=1;
 
-/* Switch related variables */
-char cnt = 0;
-char SW[4] = {0, 0, 0, 0};
-char SWold[4] = {0, 0, 0, 0};
-int LED[4];
-
 void LED_Init();
 void LED_Control();
-void Switch_Control();
+void PIT_Init();
+void PIT0_ISR();
+void PIT1_ISR();
 
 int main(void)
 {
@@ -25,15 +21,17 @@ int main(void)
 	init_INTC();
 	init_Linflex0();
 	LED_Init();
+	PIT_Init();
+	
+	INTC_InstallINTCInterruptHandler(PIT0_ISR, 59, 6);
+	INTC_InstallINTCInterruptHandler(PIT1_ISR, 60, 6);
 
 	/* Loop forever */
 	for (;;) 
 	{
 		FMSTR_Recorder();
 		FMSTR_Poll();
-
 		LED_Control();
-		Switch_Control();
 		
 		i++;
 	}
@@ -62,27 +60,40 @@ void LED_Control()
 	SIU.GPDO[55].B.PDO = LED4;
 }
 
-
-
-void Switch_Control()
+void PIT_Init()
 {
-	// Save old values
-	SWold[0] = SW[0];
-	SWold[1] = SW[1];
-	SWold[2] = SW[2];
-	SWold[3] = SW[3];
+	PIT.PITMCR.R = 0x00000001;
+	PIT.CH[0].LDVAL.R = 6400000;	// 100ms
+	PIT.CH[0].TCTRL.B.TIE = 1;
+	PIT.CH[0].TCTRL.B.TEN = 1;
 	
-	// Save new values
-	SW[0] = SIU.GPDI[48].B.PDI;
-	SW[1] = SIU.GPDI[49].B.PDI;
-	SW[2] = SIU.GPDI[50].B.PDI;
-	SW[3] = SIU.GPDI[51].B.PDI;
+	PIT.CH[1].LDVAL.R = 64000000;	// 1s
+	PIT.CH[1].TCTRL.B.TIE = 1;
+	PIT.CH[1].TCTRL.B.TEN = 1;
+	PIT.PITMCR.R = 0;
+}
+
+uint8_t PIT0cnt = 0, PIT1cnt = 0;
+
+void PIT0_ISR()
+{
+	PIT0cnt++;
 	
-	// Increase cnt when switch is off after pushed
-	if(!SWold[0] && SW[0]) cnt += 1;
-	if(!SWold[1] && SW[1]) cnt += 1;
-	if(!SWold[2] && SW[2]) cnt += 1;
-	if(!SWold[3] && SW[3]) cnt += 1;
+	PIT.CH[0].TFLG.B.TIF = 1;	
+}
+
+void PIT1_ISR()
+{
+	PIT1cnt++;
 	
+	PIT1cnt %= 16;		// PIT1cnt가 0-15 사이의 값만 가질 수 있도록 설정
+	
+	LED1 = ((PIT1cnt>>0) & 0x01) == 0;
+	LED2 = ((PIT1cnt>>1) & 0x01) == 0;
+	LED3 = ((PIT1cnt>>2) & 0x01) == 0;
+	LED4 = ((PIT1cnt>>3) & 0x01) == 0;
+
+	
+	PIT.CH[1].TFLG.B.TIF = 1;
 }
 
