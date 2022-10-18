@@ -10,6 +10,7 @@ unsigned short PWM0_A = 0, PWM0_B = 0, PWM1_A = 0,PWM1_B = 0,PWM2_A = 0,PWM2_B =
 void Init_Pin(void);
 void PWM_Init(void);
 void PWM_Out(void);
+void PWM_U_Center(void);
 
 
 int main(void)
@@ -24,6 +25,8 @@ int main(void)
 	
 	Init_Pin();
 	PWM_Init();
+
+	INTC_InstallINTCInterruptHandler(PWM_U_Center, 180, 10);
 
 	
 	
@@ -50,7 +53,8 @@ void Init_Pin(void)
 	SIU.PCR[12].R = 0x0A00; //FlexPWM_0 A[2], PA=10, OBE=1
 	SIU.PCR[13].R = 0x0A00; //FlexPWM_0 B[2], PA=10, OBE=1
 	
-	SIU.PCR[52].R = 0x0c00;
+	SIU.PCR[52].R = 0x0C00; 
+	SIU.PCR[52].R = 0x0200;
 	
 	
 }
@@ -135,6 +139,8 @@ void PWM_Init(void)
     FLEXPWM_0.SUB[3].DISMAP.B.DISX = 0b1111;
     FLEXPWM_0.SUB[3].DISMAP.B.DISB = 0b0000;
     FLEXPWM_0.SUB[3].DISMAP.B.DISA = 0b0000;
+    
+    FLEXPWM_0.SUB[0].INTEN.R = 0x0001; //VAL0 Interrupt
 }
 
 void PWM_Out(void)
@@ -164,4 +170,22 @@ void PWM_Out(void)
 	FLEXPWM_0.MCTRL.B.LDOK |= 0xF; //Load PWM Configuration Values into Buffers
     FLEXPWM_0.MCTRL.B.RUN |= 0xF;  //1,2,3,4 RUN
     
+
+}
+
+unsigned int PWMCnt = 0;
+
+// 100us
+void PWM_U_Center()
+{
+	PWMCnt++;
+	if(PWMCnt > 2500) // 250ms
+	{
+		PWMCnt = 0;
+		SIU.GPDO[52].B.PDO ^= 1;	 // LED Toggle
+	}
+	
+	FLEXPWM_0.SUB[0].STS.R = 0x0001;
+	
+	PWM_Out();
 }
